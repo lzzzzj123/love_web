@@ -1,0 +1,13 @@
+*{box-sizing:border-box}
+body{margin:0;overflow:hidden;font-family:"Microsoft YaHei",sans-serif}
+.box{min-height:100vh;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white;background:linear-gradient(to right,#f78ca0,#f9748f,#fe9a8b);position:relative;overflow:hidden}
+.heart{position:absolute;top:20px;font-size:35px;animation:float 2s infinite}
+@keyframes float{50%{transform:translateY(-15px)}}
+p{font-weight:bold;font-size:18px;margin:10px}
+h1{font-size:26px;margin:10px 20px}
+.photo{width:200px;height:200px;object-fit:cover;border-radius:10px}
+.second{margin-top:20px}
+.bottom{display:flex;gap:40px;margin:25px 0;justify-content:center}
+.left,.right{width:130px;height:45px;line-height:45px;border-radius:25px;font-weight:bold;cursor:pointer;user-select:none}
+.left{background:#5cb85c}.right{background:#c9302c}
+@media(max-width:500px){h1{font-size:22px}.photo{width:150px;height:150px}.left,.right{width:110px}}
