@@ -1,67 +1,236 @@
-let count = 0;
-
-const noTexts = [
-    "我知道你可能还没有准备好，但我真的想认真和你重新开始。",
-
-    "我不会否定过去，只希望未来还有机会陪在你身边。",
-
-    "如果可以，让我用行动重新证明一次，好吗？",
-
-    "我不会逼你马上答应，只希望你知道，我一直珍惜你。"
-];
+document.addEventListener("DOMContentLoaded", function () {
 
 
-const buhao = document.getElementById("buhao");
+    // =====================
+    // 翻页功能
+    // =====================
+
+    let pageIndex = 0;
 
 
-// 点击“不好”
-buhao.onclick = function(){
+    window.nextPage = function () {
 
-    count++;
+        let pages = document.querySelectorAll(".page");
 
 
-    // 前4次按照顺序显示
-    if(count <= noTexts.length){
+        if (pageIndex < pages.length - 1) {
 
-        showPopup(noTexts[count-1]);
+
+            pages[pageIndex].classList.remove("active");
+
+
+            pageIndex++;
+
+
+            pages[pageIndex].classList.add("active");
+
+
+        }
+
+    };
+
+
+
+    // =====================
+    // 自定义弹窗
+    // =====================
+
+    window.showPopup = function (text) {
+
+        document.getElementById("popup").style.display = "block";
+
+
+        document.getElementById("popup-text").innerHTML = text;
+
+    };
+
+
+
+    window.closePopup = function () {
+
+        document.getElementById("popup").style.display = "none";
+
+    };
+
+
+
+
+
+    // =====================
+    // 不好按钮逻辑
+    // =====================
+
+
+    let count = 0;
+
+
+    const noTexts = [
+
+
+        "我知道你可能还没有准备好。🥺<br><br>" +
+        "没关系，我理解。<br>" +
+        "只是想让你知道，我真的想认真和你重新开始。",
+
+
+
+        "其实我不是想让你忘记过去。<br><br>" +
+        "我只是希望未来的日子里，" +
+        "还有机会陪在你身边。",
+
+
+
+        "以前的我可能没有做好。<br><br>" +
+        "但我真的有在反思，" +
+        "也有在努力改变。<br>" +
+        "如果可以，让我用行动重新证明一次，好吗？",
+
+
+
+        "我不会逼你马上答应。<br><br>" +
+        "我只是想告诉你：<br>" +
+        "如果你愿意回头，我一直都在。"
+
+
+    ];
+
+
+
+    let buhao = document.getElementById("buhao");
+
+
+
+    if (buhao) {
+
+
+        buhao.onclick = function () {
+
+
+            count++;
+
+
+
+            // 前四次按顺序显示
+
+            if (count <= noTexts.length) {
+
+
+                showPopup(noTexts[count - 1]);
+
+
+            }
+
+            else {
+
+
+                // 后续随机显示
+
+                let random =
+                    Math.floor(Math.random() * noTexts.length);
+
+
+
+                showPopup(noTexts[random]);
+
+
+
+                // 按钮逃跑
+
+                moveButton();
+
+
+            }
+
+
+
+        };
+
 
     }
 
 
-    // 第5次以后随机显示
-    else{
-
-        let randomIndex = Math.floor(
-            Math.random() * noTexts.length
-        );
 
 
-        showPopup(noTexts[randomIndex]);
+
+    // =====================
+    // 不好按钮逃跑
+    // =====================
 
 
-        moveButton();
+    function moveButton() {
+
+
+        let btnWidth = buhao.offsetWidth;
+
+        let btnHeight = buhao.offsetHeight;
+
+
+
+        let maxX =
+            window.innerWidth - btnWidth - 20;
+
+
+        let maxY =
+            window.innerHeight - btnHeight - 20;
+
+
+
+        let x =
+            Math.random() * maxX;
+
+
+        let y =
+            Math.random() * maxY;
+
+
+
+        buhao.style.position = "fixed";
+
+
+        buhao.style.left = x + "px";
+
+
+        buhao.style.top = y + "px";
+
 
     }
 
-};
 
 
 
-// 按钮逃跑
-function moveButton(){
 
-    let maxX = window.innerWidth - buhao.offsetWidth - 20;
-    let maxY = window.innerHeight - buhao.offsetHeight - 20;
-
-
-    let x = Math.random() * maxX;
-    let y = Math.random() * maxY;
+    // =====================
+    // 好按钮
+    // =====================
 
 
-    buhao.style.position = "fixed";
+    let hao = document.getElementById("hao");
 
-    buhao.style.left = x + "px";
 
-    buhao.style.top = y + "px";
 
-}
+    if (hao) {
+
+
+        hao.onclick = function () {
+
+
+            showPopup(
+
+                "谢谢你愿意再给我们一次机会 ❤️<br><br>" +
+
+                "我们不是回到过去，<br>" +
+
+                "而是重新开始。<br><br>" +
+
+                "这一次，我会更加珍惜你。"
+
+            );
+
+
+        };
+
+
+    }
+
+
+
+});
