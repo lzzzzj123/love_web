@@ -1,15 +1,26 @@
 *{
-
     box-sizing:border-box;
+
+    /* 禁止手机长按选择文字 */
+    -webkit-user-select:none;
+    user-select:none;
+
+    /* 禁止长按弹出菜单 */
+    -webkit-touch-callout:none;
+}
+
+
+html,body{
+
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
 
 }
 
 
-
 body{
-
-
-    margin:0;
 
     min-height:100vh;
 
@@ -22,7 +33,6 @@ body{
 
 
     font-family:
-
     "Microsoft YaHei",
     sans-serif;
 
@@ -34,14 +44,15 @@ body{
     align-items:center;
 
 
+    overflow:hidden;
+
 }
 
 
 
 
 
-/* 页面卡片 */
-
+/* 页面容器 */
 
 .page{
 
@@ -49,8 +60,7 @@ body{
     display:none;
 
 
-    width:85%;
-
+    width:88%;
 
     max-width:420px;
 
@@ -74,9 +84,13 @@ body{
     0 10px 30px rgba(0,0,0,.12);
 
 
+    position:relative;
+
+
+    z-index:5;
+
 
     animation:
-
     fade .5s ease;
 
 
@@ -113,10 +127,10 @@ body{
 .photo{
 
 
-    width:160px;
+    width:150px;
 
 
-    height:160px;
+    height:150px;
 
 
     border-radius:50%;
@@ -134,9 +148,6 @@ body{
 
 
 
-/* 标题 */
-
-
 h1{
 
 
@@ -146,25 +157,19 @@ h1{
     font-size:26px;
 
 
-    margin-bottom:20px;
-
-
 }
 
 
 
 
 
-/* 文字 */
-
-
 p{
 
 
-    font-size:17px;
-
-
     color:#555;
+
+
+    font-size:17px;
 
 
     line-height:2;
@@ -176,18 +181,28 @@ p{
 
 
 
-/* 按钮 */
-
+/* 所有按钮 */
 
 button{
+
+
+    position:relative;
+
+
+    z-index:999;
+
+
+    pointer-events:auto;
+
+
+    -webkit-tap-highlight-color:transparent;
+
 
 
     margin:10px;
 
 
-    padding:
-
-    12px 25px;
+    padding:12px 25px;
 
 
     border:none;
@@ -203,9 +218,6 @@ button{
 
 
     font-size:16px;
-
-
-    cursor:pointer;
 
 
 }
@@ -226,9 +238,6 @@ button:active{
 
 
 
-/* 好按钮 */
-
-
 #hao{
 
 
@@ -241,14 +250,13 @@ button:active{
 
 
 
-/* 不好按钮移动动画 */
+/* 逃跑按钮 */
 
 
 #buhao{
 
 
     transition:
-
     all .3s ease;
 
 
@@ -270,6 +278,9 @@ button:active{
     position:fixed;
 
 
+    z-index:9999;
+
+
     left:0;
 
 
@@ -283,17 +294,7 @@ button:active{
 
 
     background:
-
     rgba(0,0,0,.35);
-
-
-    z-index:999;
-
-
-
-    animation:
-
-    fadeIn .3s;
 
 
 }
@@ -330,7 +331,6 @@ button:active{
 
 
     transform:
-
     translate(-50%,-50%);
 
 
@@ -342,13 +342,11 @@ button:active{
 
 
 
-.popup-box p{
+
+.popup-box button{
 
 
-    color:#ff6688;
-
-
-    font-size:18px;
+    background:#ff6688;
 
 
 }
@@ -357,7 +355,7 @@ button:active{
 
 
 
-/* 页面切换动画 */
+/* 翻页动画 */
 
 
 @keyframes fade{
@@ -365,30 +363,21 @@ button:active{
 
     from{
 
-
         opacity:0;
 
-
         transform:
-
         translateX(40px);
 
-
     }
-
 
 
     to{
 
-
         opacity:1;
-
 
         transform:
-
         translateX(0);
 
-
     }
 
 }
@@ -397,34 +386,10 @@ button:active{
 
 
 
-@keyframes fadeIn{
-
-
-    from{
-
-        opacity:0;
-
-    }
-
-
-    to{
-
-        opacity:1;
-
-    }
-
-
-}
-
-
-
-
-
-/* 手机适配 */
+/* 微信手机适配 */
 
 
 @media(max-width:600px){
-
 
 
     .page{
@@ -443,8 +408,6 @@ button:active{
 
 
 
-
-
     .photo{
 
 
@@ -458,8 +421,6 @@ button:active{
 
 
 
-
-
     h1{
 
 
@@ -467,8 +428,6 @@ button:active{
 
 
     }
-
-
 
 
 
@@ -485,18 +444,18 @@ button:active{
 
 
 
-
-
     button{
 
 
         width:85%;
 
 
+        height:45px;
+
+
         font-size:16px;
 
 
     }
-
 
 }
