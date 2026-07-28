@@ -80,3 +80,53 @@ left:50%;
 transform:translate(-50%,-50%);
 text-align:center;
 }
+
+/* 按钮逃跑动画 */
+#buhao{
+
+    transition: all 0.3s ease;
+
+}
+
+
+/* 手机端适配 */
+@media(max-width:600px){
+
+    .page{
+
+        width:85%;
+
+        padding:25px;
+
+        min-height:65vh;
+
+    }
+
+
+    h1{
+
+        font-size:24px;
+
+    }
+
+
+    p{
+
+        font-size:16px;
+
+        line-height:1.8;
+
+    }
+
+
+    button{
+
+        width:80%;
+
+        font-size:16px;
+
+        margin:8px;
+
+    }
+
+}
