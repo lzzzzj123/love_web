@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宝贝，我想和你聊聊</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="page active">
+    <img src="img/3.jpeg">
+    <h1>宝贝，我想和你聊聊 ❤️</h1>
+    <p>分开的这段时间，<br>我想了很多很多。<br><br>
+    我才发现，原来你早已经成为我生活里很重要的一部分。</p>
+    <button onclick="nextPage()">下一页</button>
+</div>
+
+<div class="page">
+    <h1>关于我们的回忆</h1>
+    <p>我想念你的笑，<br>
+    想念和你聊天的日子，<br>
+    也想念我们一起经历过的那些小事。</p>
+    <button onclick="nextPage()">下一页</button>
+</div>
+
+<div class="page">
+    <h1>我想告诉你的话</h1>
+    <p>我知道以前有很多地方做得不好，<br>
+    也让你失望过、难过过。<br><br>
+    但我真的有在反思，也有在努力改变。</p>
+    <button onclick="nextPage()">下一页</button>
+</div>
+
+<div class="page">
+    <h1>如果可以 ❤️</h1>
+    <p>我想重新认识你，<br>
+    重新陪伴你。<br><br>
+    给我们一个新的开始。</p>
+    <button id="hao">给彼此一个机会 ❤️</button>
+    <button id="buhao">我还需要想想</button>
+</div>
+
+<div id="popup">
+    <div class="popup-box">
+        <p id="popup-text"></p>
+        <button onclick="closePopup()">确定</button>
+    </div>
+</div>
+
+<script src="js/yiqi.js"></script>
+</body>
+</html>
