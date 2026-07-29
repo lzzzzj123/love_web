@@ -5,7 +5,7 @@ function(){
 
 
 // ======================
-// 翻页功能
+// 页面翻页
 // ======================
 
 
@@ -16,17 +16,19 @@ let pageIndex = 0;
 window.nextPage = function(){
 
 
-    let pages=document.querySelectorAll(".page");
+    let pages = document.querySelectorAll(".page");
 
 
 
-    if(pageIndex < pages.length-1){
+    if(pageIndex < pages.length - 1){
 
 
         pages[pageIndex].classList.remove("active");
 
 
+
         pageIndex++;
+
 
 
         pages[pageIndex].classList.add("active");
@@ -43,22 +45,25 @@ window.nextPage = function(){
 
 
 
+
 // ======================
-// 弹窗功能
+// 弹窗
 // ======================
 
 
-window.showPopup=function(text){
+window.showPopup = function(text){
 
 
-    let popup=document.getElementById("popup");
+    let popup =
+    document.getElementById("popup");
 
 
-    let popupText=document.getElementById("popup-text");
+    let popupText =
+    document.getElementById("popup-text");
 
 
 
-    popupText.innerHTML=text;
+    popupText.innerHTML = text;
 
 
     popup.style.display="block";
@@ -87,14 +92,16 @@ window.closePopup=function(){
 
 
 // ======================
-// 再想想按钮
+// 再想想按钮逻辑
 // ======================
 
 
-let count=0;
+let buhao =
+document.getElementById("buhao");
 
 
-let buhao=document.getElementById("buhao");
+
+let count = 0;
 
 
 
@@ -125,35 +132,36 @@ let texts=[
 if(buhao){
 
 
+
     buhao.onclick=function(){
+
 
 
         count++;
 
 
 
-        if(count<=texts.length){
+
+        if(count <= texts.length){
 
 
             showPopup(
-            texts[count-1]
+                texts[count-1]
             );
 
 
-        }
 
-        else{
+        }else{
 
 
-            let index=Math.floor(
-
+            let random =
+            Math.floor(
             Math.random()*texts.length
-
             );
 
 
             showPopup(
-            texts[index]
+                texts[random]
             );
 
 
@@ -168,6 +176,7 @@ if(buhao){
     };
 
 
+
 }
 
 
@@ -179,15 +188,17 @@ if(buhao){
 
 
 // ======================
-// 再想想按钮移动
-// 避开 给彼此一个机会
+// 再想想按钮逃跑
+// 避开 给彼此一个机会按钮
 // ======================
 
 
 function moveButton(){
 
 
-    let hao=document.getElementById("hao");
+
+    let hao =
+    document.getElementById("hao");
 
 
 
@@ -200,25 +211,32 @@ function moveButton(){
 
 
 
-    let haoRect=
+    // 变为全屏定位
+
+    buhao.style.position="fixed";
+
+
+
+    let haoRect =
     hao.getBoundingClientRect();
 
 
 
-    let btnWidth=
+    let btnWidth =
     buhao.offsetWidth;
 
 
-    let btnHeight=
+    let btnHeight =
     buhao.offsetHeight;
 
 
 
-    let screenWidth=
+
+    let screenWidth =
     window.innerWidth;
 
 
-    let screenHeight=
+    let screenHeight =
     window.innerHeight;
 
 
@@ -232,21 +250,25 @@ function moveButton(){
 
 
 
-    let times=0;
+    let attempt=0;
 
 
 
-    while(!safe && times<100){
+
+
+    while(!safe && attempt<100){
 
 
 
-        x=Math.random()
+        x =
+        Math.random()
         *
         (screenWidth-btnWidth);
 
 
 
-        y=Math.random()
+        y =
+        Math.random()
         *
         (screenHeight-btnHeight);
 
@@ -254,7 +276,7 @@ function moveButton(){
 
 
 
-        let btnRect={
+        let newRect={
 
 
             left:x,
@@ -274,25 +296,26 @@ function moveButton(){
 
 
 
-        // 判断两个按钮是否重叠
+        // 判断是否和好按钮重叠
 
-        let overlap=!(
-
-
-            btnRect.right < haoRect.left ||
+        let overlap = !(
 
 
-            btnRect.left > haoRect.right ||
+            newRect.right < haoRect.left ||
 
 
-            btnRect.bottom < haoRect.top ||
+            newRect.left > haoRect.right ||
 
 
-            btnRect.top > haoRect.bottom
+            newRect.bottom < haoRect.top ||
+
+
+            newRect.top > haoRect.bottom
 
 
 
         );
+
 
 
 
@@ -307,7 +330,7 @@ function moveButton(){
 
 
 
-        times++;
+        attempt++;
 
 
     }
@@ -316,10 +339,14 @@ function moveButton(){
 
 
 
-    buhao.style.left=x+"px";
+
+    buhao.style.left =
+    x + "px";
 
 
-    buhao.style.top=y+"px";
+
+    buhao.style.top =
+    y + "px";
 
 
 
@@ -334,15 +361,17 @@ function moveButton(){
 
 
 // ======================
-// 给彼此一个机会
+// 给彼此一个机会按钮
 // ======================
 
 
-let hao=document.getElementById("hao");
+let hao =
+document.getElementById("hao");
 
 
 
 if(hao){
+
 
 
     hao.onclick=function(){
@@ -350,12 +379,13 @@ if(hao){
 
         showPopup(
 
-        "谢谢你的选择。<br><br>"
+        "谢谢你的选择。"
 
         );
 
 
     };
+
 
 
 }
