@@ -1,12 +1,26 @@
 *{
 
-box-sizing:border-box;
+    box-sizing:border-box;
 
--webkit-user-select:none;
+    -webkit-user-select:none;
 
-user-select:none;
+    user-select:none;
 
--webkit-touch-callout:none;
+    -webkit-touch-callout:none;
+
+}
+
+
+
+html,body{
+
+    width:100%;
+
+    height:100%;
+
+    margin:0;
+
+    padding:0;
 
 }
 
@@ -14,189 +28,207 @@ user-select:none;
 
 body{
 
-
-margin:0;
-
-width:100%;
-
-height:100vh;
+    min-height:100vh;
 
 
-background:
+    background:
 
-linear-gradient(
-135deg,
-#ffd6e0,
-#fff0f5
-);
-
-
-
-font-family:
-
-"Microsoft YaHei",
-sans-serif;
+    linear-gradient(
+    135deg,
+    #ffd6e0,
+    #fff0f5
+    );
 
 
-display:flex;
+    font-family:
 
-justify-content:center;
+    "Microsoft YaHei",
+    sans-serif;
 
-align-items:center;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
 
-overflow:hidden;
-
+    overflow:hidden;
 
 }
 
 
 
 
+
+/* 页面 */
 
 .page{
 
 
-display:none;
+    display:none;
 
 
-width:88%;
-
-max-width:420px;
+    width:88%;
 
 
-min-height:65vh;
+    max-width:420px;
 
 
-padding:30px;
+    min-height:65vh;
 
 
-background:white;
+    padding:30px;
 
 
-border-radius:25px;
+    background:white;
 
 
-text-align:center;
+    border-radius:25px;
 
 
-box-shadow:
-
-0 10px 30px rgba(0,0,0,.12);
+    text-align:center;
 
 
-position:relative;
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.12);
 
 
-animation:fade .5s;
+    position:relative;
+
+
+    animation:
+
+    fade .5s ease;
 
 
 }
+
 
 
 
 .page.active{
 
 
-display:flex;
+    display:flex;
 
 
-flex-direction:column;
+    flex-direction:column;
 
 
-justify-content:center;
+    justify-content:center;
 
 
-align-items:center;
+    align-items:center;
 
 
 }
 
 
+
+
+
+/* 图片 */
 
 .photo{
 
 
-width:150px;
-
-height:150px;
+    width:150px;
 
 
-border-radius:50%;
+    height:150px;
 
 
-object-fit:cover;
+    border-radius:50%;
 
 
-margin-bottom:20px;
+    object-fit:cover;
+
+
+    margin-bottom:20px;
 
 
 }
 
 
+
+
+
+/* 标题 */
 
 h1{
 
 
-color:#ff6688;
+    color:#ff6688;
 
 
-font-size:26px;
+    font-size:26px;
 
 
 }
 
 
+
+
+
+/* 正文 */
 
 p{
 
 
-font-size:17px;
+    color:#555;
 
 
-color:#555;
+    font-size:17px;
 
 
-line-height:2;
+    line-height:2;
 
 
 }
 
 
 
+
+
+/* 普通按钮 */
 
 
 button{
 
 
-position:relative;
+    position:relative;
 
 
-z-index:10;
+    z-index:10;
 
 
-margin:10px;
+    margin:10px;
 
 
-padding:12px 25px;
+    padding:12px 25px;
 
 
-border:none;
+    border:none;
 
 
-border-radius:30px;
+    border-radius:30px;
 
 
-background:#ff8fab;
+    background:#ff8fab;
 
 
-color:white;
+    color:white;
 
 
-font-size:16px;
+    font-size:16px;
 
 
--webkit-tap-highlight-color:transparent;
+    cursor:pointer;
+
+
+    -webkit-tap-highlight-color:transparent;
 
 
 }
@@ -205,15 +237,9 @@ font-size:16px;
 
 button:active{
 
-transform:scale(.95);
 
-}
+    transform:scale(.95);
 
-
-
-#hao{
-
-background:#ff6688;
 
 }
 
@@ -221,43 +247,94 @@ background:#ff6688;
 
 
 
-/* 两个按钮区域 */
+/* 最后一页按钮区域 */
 
 .button-area{
 
 
-position:relative;
+    position:relative;
 
 
-width:100%;
+    width:100%;
 
 
-height:120px;
+    height:150px;
 
 
-display:flex;
-
-
-justify-content:center;
-
-
-align-items:center;
+    margin-top:20px;
 
 
 }
 
 
+
+
+
+
+/* 给一次机会按钮 */
+
+
+#hao{
+
+
+    position:absolute;
+
+
+    top:10px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+    width:75%;
+
+
+    background:#ff6688;
+
+
+    z-index:20;
+
+
+}
+
+
+
+
+
+/* 再想想按钮 */
 
 
 #buhao{
 
 
-transition:
+    position:absolute;
 
-all .3s ease;
+
+    top:80px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+    width:55%;
+
+
+    transition:
+
+    all .3s ease;
+
+
+    z-index:10;
 
 
 }
+
 
 
 
@@ -269,30 +346,30 @@ all .3s ease;
 #popup{
 
 
-display:none;
+    display:none;
 
 
-position:fixed;
+    position:fixed;
 
 
-z-index:999;
+    left:0;
 
 
-top:0;
+    top:0;
 
 
-left:0;
+    width:100%;
 
 
-width:100%;
+    height:100%;
 
 
-height:100%;
+    background:
+
+    rgba(0,0,0,.35);
 
 
-background:
-
-rgba(0,0,0,.35);
+    z-index:9999;
 
 
 }
@@ -301,39 +378,40 @@ rgba(0,0,0,.35);
 
 
 
+
 .popup-box{
 
 
-width:75%;
+    width:75%;
 
 
-max-width:350px;
+    max-width:350px;
 
 
-background:white;
+    padding:30px;
 
 
-border-radius:25px;
+    background:white;
 
 
-padding:30px;
+    border-radius:25px;
 
 
-position:absolute;
+    position:absolute;
 
 
-top:50%;
+    top:50%;
 
 
-left:50%;
+    left:50%;
 
 
-transform:
+    transform:
 
-translate(-50%,-50%);
+    translate(-50%,-50%);
 
 
-text-align:center;
+    text-align:center;
 
 
 }
@@ -345,10 +423,10 @@ text-align:center;
 .popup-box p{
 
 
-color:#ff6688;
+    color:#ff6688;
 
 
-font-size:18px;
+    font-size:18px;
 
 
 }
@@ -356,100 +434,139 @@ font-size:18px;
 
 
 
+
+/* 页面切换动画 */
 
 @keyframes fade{
 
 
-from{
+    from{
 
 
-opacity:0;
+        opacity:0;
 
 
-transform:translateX(40px);
+        transform:
+
+        translateX(40px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateX(0);
+
+
+    }
 
 
 }
 
 
-to{
-
-
-opacity:1;
-
-
-transform:translateX(0);
-
-
-}
-
-
-}
 
 
 
+/* 手机适配 */
 
 @media(max-width:600px){
 
 
-.page{
+    .page{
 
 
-width:88%;
+        width:88%;
 
 
-padding:25px;
+        min-height:70vh;
 
 
-}
+        padding:25px;
 
 
-
-.photo{
-
-
-width:130px;
-
-height:130px;
-
-
-}
+    }
 
 
 
-h1{
+
+    .photo{
 
 
-font-size:23px;
+        width:130px;
 
 
-}
+        height:130px;
 
 
-
-p{
-
-
-font-size:16px;
-
-
-line-height:1.8;
-
-
-}
+    }
 
 
 
-button{
+
+    h1{
 
 
-width:85%;
+        font-size:23px;
 
 
-height:45px;
+    }
 
 
-}
+
+
+    p{
+
+
+        font-size:16px;
+
+
+        line-height:1.8;
+
+
+    }
+
+
+
+
+
+    button{
+
+
+        font-size:16px;
+
+
+    }
+
+
+
+
+    #hao{
+
+
+        width:80%;
+
+
+    }
+
+
+
+
+
+    #buhao{
+
+
+        width:60%;
+
+
+    }
 
 
 }
