@@ -1,508 +1,171 @@
-*{
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
-    box-sizing:border-box;
 
-    -webkit-user-select:none;
 
-    user-select:none;
+// ======================
+// 翻页功能
+// ======================
 
-    -webkit-touch-callout:none;
 
-}
+let pageIndex = 0;
 
 
 
-html,body{
+window.nextPage = function(){
 
 
-    width:100%;
+    let pages=document.querySelectorAll(".page");
 
-    height:100%;
 
-    margin:0;
 
-    padding:0;
+    if(pageIndex < pages.length-1){
 
 
-}
+        pages[pageIndex].classList.remove("active");
 
 
+        pageIndex++;
 
-body{
 
-
-    min-height:100vh;
-
-
-    background:
-
-    linear-gradient(
-    135deg,
-    #ffd6e0,
-    #fff0f5
-    );
-
-
-    font-family:
-
-    "Microsoft YaHei",
-    sans-serif;
-
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-
-    overflow:hidden;
-
-
-}
-
-
-
-
-
-/* 页面主体 */
-
-.page{
-
-
-    display:none;
-
-
-    width:88%;
-
-
-    max-width:420px;
-
-
-    min-height:65vh;
-
-
-    padding:30px;
-
-
-    background:white;
-
-
-    border-radius:25px;
-
-
-    text-align:center;
-
-
-    box-shadow:
-
-    0 10px 30px rgba(0,0,0,.12);
-
-
-    position:relative;
-
-
-    animation:
-
-    fade .5s ease;
-
-
-}
-
-
-
-
-.page.active{
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-}
-
-
-
-
-
-/* 图片 */
-
-.photo{
-
-
-    width:150px;
-
-
-    height:150px;
-
-
-    border-radius:50%;
-
-
-    object-fit:cover;
-
-
-    margin-bottom:20px;
-
-
-}
-
-
-
-
-
-
-/* 标题 */
-
-h1{
-
-
-    color:#ff6688;
-
-
-    font-size:26px;
-
-
-    margin:15px 0;
-
-
-}
-
-
-
-
-
-/* 正文 */
-
-p{
-
-
-    color:#555;
-
-
-    font-size:17px;
-
-
-    line-height:2;
-
-
-}
-
-
-
-
-
-/* 普通按钮 */
-
-
-button{
-
-
-    position:relative;
-
-
-    z-index:5;
-
-
-    margin:10px;
-
-
-    padding:12px 25px;
-
-
-    border:none;
-
-
-    border-radius:30px;
-
-
-    background:#ff8fab;
-
-
-    color:white;
-
-
-    font-size:16px;
-
-
-    cursor:pointer;
-
-
-    -webkit-tap-highlight-color:transparent;
-
-
-}
-
-
-
-button:active{
-
-
-    transform:scale(.95);
-
-
-}
-
-
-
-
-
-/*
-第四页按钮区域
-*/
-
-.button-area{
-
-
-    width:100%;
-
-
-    height:80px;
-
-
-    position:relative;
-
-
-    margin-top:20px;
-
-
-}
-
-
-
-
-
-
-/*
-给彼此一个机会按钮
-
-固定位置
-最高层级
-*/
-
-#hao{
-
-
-    width:280px;
-
-
-    min-height:55px;
-
-
-    padding:15px 20px;
-
-
-    font-size:18px;
-
-
-    white-space:nowrap;
-
-
-    position:absolute;
-
-
-    left:50%;
-
-
-    top:5px;
-
-
-    transform:translateX(-50%);
-
-
-    background:#ff6688;
-
-
-    z-index:20;
-
-
-}
-
-
-
-
-
-
-
-/*
-再想想按钮
-
-由JS控制位置
-
-默认位置
-*/
-
-#buhao{
-
-
-    width:120px;
-
-
-    min-height:45px;
-
-
-    padding:10px;
-
-
-    font-size:16px;
-
-
-    position:fixed;
-
-
-    z-index:10;
-
-
-    transition:
-
-    left .25s ease,
-
-    top .25s ease;
-
-
-}
-
-
-
-
-
-
-
-/* 弹窗 */
-
-
-#popup{
-
-
-    display:none;
-
-
-    position:fixed;
-
-
-    top:0;
-
-
-    left:0;
-
-
-    width:100%;
-
-
-    height:100%;
-
-
-    background:
-
-    rgba(0,0,0,.35);
-
-
-    z-index:999;
-
-
-}
-
-
-
-
-
-.popup-box{
-
-
-    width:75%;
-
-
-    max-width:350px;
-
-
-    background:white;
-
-
-    border-radius:25px;
-
-
-    padding:30px;
-
-
-    position:absolute;
-
-
-    top:50%;
-
-
-    left:50%;
-
-
-    transform:
-
-    translate(-50%,-50%);
-
-
-    text-align:center;
-
-
-}
-
-
-
-
-
-.popup-box p{
-
-
-    color:#ff6688;
-
-
-    font-size:18px;
-
-
-}
-
-
-
-
-
-/* 页面切换动画 */
-
-
-@keyframes fade{
-
-
-    from{
-
-
-        opacity:0;
-
-
-        transform:
-
-        translateX(40px);
+        pages[pageIndex].classList.add("active");
 
 
     }
 
 
-
-    to{
-
-
-        opacity:1;
+};
 
 
-        transform:
-
-        translateX(0);
 
 
-    }
+
+
+
+// ======================
+// 弹窗功能
+// ======================
+
+
+window.showPopup=function(text){
+
+
+    let popup=document.getElementById("popup");
+
+
+    let popupText=document.getElementById("popup-text");
+
+
+
+    popupText.innerHTML=text;
+
+
+    popup.style.display="block";
+
+
+};
+
+
+
+
+
+window.closePopup=function(){
+
+
+    document.getElementById("popup").style.display="none";
+
+
+};
+
+
+
+
+
+
+
+
+
+// ======================
+// 再想想按钮
+// ======================
+
+
+let count=0;
+
+
+let buhao=document.getElementById("buhao");
+
+
+
+let texts=[
+
+
+"我知道你可能还没有准备好。<br><br>没关系，我理解。",
+
+
+
+"其实我只是希望你能够认真考虑一下。<br><br>不用急着回答。",
+
+
+
+"过去的事情，我也一直在反思。<br><br>希望以后能够做得更好。",
+
+
+
+"如果可以，希望我们能够重新开始。<br><br>我会认真面对。"
+
+
+];
+
+
+
+
+
+if(buhao){
+
+
+    buhao.onclick=function(){
+
+
+        count++;
+
+
+
+        if(count<=texts.length){
+
+
+            showPopup(
+            texts[count-1]
+            );
+
+
+        }
+
+        else{
+
+
+            let index=Math.floor(
+
+            Math.random()*texts.length
+
+            );
+
+
+            showPopup(
+            texts[index]
+            );
+
+
+
+            moveButton();
+
+
+        }
+
+
+
+    };
 
 
 }
@@ -512,22 +175,139 @@ button:active{
 
 
 
-/* 手机适配 */
 
 
-@media(max-width:600px){
+
+// ======================
+// 再想想按钮移动
+// 避开 给彼此一个机会
+// ======================
 
 
-    .page{
+function moveButton(){
 
 
-        width:88%;
+    let hao=document.getElementById("hao");
 
 
-        min-height:70vh;
+
+    if(!hao || !buhao){
+
+        return;
+
+    }
 
 
-        padding:25px;
+
+
+    let haoRect=
+    hao.getBoundingClientRect();
+
+
+
+    let btnWidth=
+    buhao.offsetWidth;
+
+
+    let btnHeight=
+    buhao.offsetHeight;
+
+
+
+    let screenWidth=
+    window.innerWidth;
+
+
+    let screenHeight=
+    window.innerHeight;
+
+
+
+    let x;
+
+    let y;
+
+
+    let safe=false;
+
+
+
+    let times=0;
+
+
+
+    while(!safe && times<100){
+
+
+
+        x=Math.random()
+        *
+        (screenWidth-btnWidth);
+
+
+
+        y=Math.random()
+        *
+        (screenHeight-btnHeight);
+
+
+
+
+
+        let btnRect={
+
+
+            left:x,
+
+            right:x+btnWidth,
+
+
+            top:y,
+
+            bottom:y+btnHeight
+
+
+        };
+
+
+
+
+
+
+        // 判断两个按钮是否重叠
+
+        let overlap=!(
+
+
+            btnRect.right < haoRect.left ||
+
+
+            btnRect.left > haoRect.right ||
+
+
+            btnRect.bottom < haoRect.top ||
+
+
+            btnRect.top > haoRect.bottom
+
+
+
+        );
+
+
+
+
+        if(!overlap){
+
+
+            safe=true;
+
+
+        }
+
+
+
+        times++;
 
 
     }
@@ -536,77 +316,50 @@ button:active{
 
 
 
-    .photo{
+    buhao.style.left=x+"px";
 
 
-        width:130px;
-
-
-        height:130px;
-
-
-    }
-
-
-
-
-
-    h1{
-
-
-        font-size:23px;
-
-
-    }
-
-
-
-
-
-    p{
-
-
-        font-size:16px;
-
-
-        line-height:1.8;
-
-
-    }
-
-
-
-
-
-    #hao{
-
-
-        width:85vw;
-
-
-        max-width:300px;
-
-
-        font-size:18px;
-
-
-    }
-
-
-
-
-
-    #buhao{
-
-
-        width:110px;
-
-
-        font-size:16px;
-
-
-    }
+    buhao.style.top=y+"px";
 
 
 
 }
+
+
+
+
+
+
+
+
+
+// ======================
+// 给彼此一个机会
+// ======================
+
+
+let hao=document.getElementById("hao");
+
+
+
+if(hao){
+
+
+    hao.onclick=function(){
+
+
+        showPopup(
+
+        "谢谢你的选择。<br><br>"
+
+        );
+
+
+    };
+
+
+}
+
+
+
+});
