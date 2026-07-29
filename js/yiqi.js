@@ -1,183 +1,508 @@
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+*{
+
+    box-sizing:border-box;
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+    -webkit-touch-callout:none;
+
+}
 
 
 
-// ======================
-// 翻页功能
-// ======================
+html,body{
 
 
-let pageIndex = 0;
+    width:100%;
+
+    height:100%;
+
+    margin:0;
+
+    padding:0;
 
 
-
-window.nextPage = function(){
-
-
-    let pages = document.querySelectorAll(".page");
-
-
-
-    if(pageIndex < pages.length - 1){
-
-
-        pages[pageIndex].classList.remove("active");
+}
 
 
 
-        pageIndex++;
+body{
+
+
+    min-height:100vh;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #ffd6e0,
+    #fff0f5
+    );
+
+
+    font-family:
+
+    "Microsoft YaHei",
+    sans-serif;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    overflow:hidden;
+
+
+}
 
 
 
-        pages[pageIndex].classList.add("active");
+
+
+/* 页面主体 */
+
+.page{
+
+
+    display:none;
+
+
+    width:88%;
+
+
+    max-width:420px;
+
+
+    min-height:65vh;
+
+
+    padding:30px;
+
+
+    background:white;
+
+
+    border-radius:25px;
+
+
+    text-align:center;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.12);
+
+
+    position:relative;
+
+
+    animation:
+
+    fade .5s ease;
+
+
+}
+
+
+
+
+.page.active{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+/* 图片 */
+
+.photo{
+
+
+    width:150px;
+
+
+    height:150px;
+
+
+    border-radius:50%;
+
+
+    object-fit:cover;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+
+/* 标题 */
+
+h1{
+
+
+    color:#ff6688;
+
+
+    font-size:26px;
+
+
+    margin:15px 0;
+
+
+}
+
+
+
+
+
+/* 正文 */
+
+p{
+
+
+    color:#555;
+
+
+    font-size:17px;
+
+
+    line-height:2;
+
+
+}
+
+
+
+
+
+/* 普通按钮 */
+
+
+button{
+
+
+    position:relative;
+
+
+    z-index:5;
+
+
+    margin:10px;
+
+
+    padding:12px 25px;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+    background:#ff8fab;
+
+
+    color:white;
+
+
+    font-size:16px;
+
+
+    cursor:pointer;
+
+
+    -webkit-tap-highlight-color:transparent;
+
+
+}
+
+
+
+button:active{
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+
+
+/*
+第四页按钮区域
+*/
+
+.button-area{
+
+
+    width:100%;
+
+
+    height:80px;
+
+
+    position:relative;
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+
+
+
+/*
+给彼此一个机会按钮
+
+固定位置
+最高层级
+*/
+
+#hao{
+
+
+    width:280px;
+
+
+    min-height:55px;
+
+
+    padding:15px 20px;
+
+
+    font-size:18px;
+
+
+    white-space:nowrap;
+
+
+    position:absolute;
+
+
+    left:50%;
+
+
+    top:5px;
+
+
+    transform:translateX(-50%);
+
+
+    background:#ff6688;
+
+
+    z-index:20;
+
+
+}
+
+
+
+
+
+
+
+/*
+再想想按钮
+
+由JS控制位置
+
+默认位置
+*/
+
+#buhao{
+
+
+    width:120px;
+
+
+    min-height:45px;
+
+
+    padding:10px;
+
+
+    font-size:16px;
+
+
+    position:fixed;
+
+
+    z-index:10;
+
+
+    transition:
+
+    left .25s ease,
+
+    top .25s ease;
+
+
+}
+
+
+
+
+
+
+
+/* 弹窗 */
+
+
+#popup{
+
+
+    display:none;
+
+
+    position:fixed;
+
+
+    top:0;
+
+
+    left:0;
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    background:
+
+    rgba(0,0,0,.35);
+
+
+    z-index:999;
+
+
+}
+
+
+
+
+
+.popup-box{
+
+
+    width:75%;
+
+
+    max-width:350px;
+
+
+    background:white;
+
+
+    border-radius:25px;
+
+
+    padding:30px;
+
+
+    position:absolute;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.popup-box p{
+
+
+    color:#ff6688;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+/* 页面切换动画 */
+
+
+@keyframes fade{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateX(40px);
 
 
     }
 
 
-};
 
+    to{
 
 
+        opacity:1;
 
 
+        transform:
 
+        translateX(0);
 
-// ======================
-// 弹窗功能
-// ======================
 
-
-window.showPopup = function(text){
-
-
-    document.getElementById("popup").style.display="block";
-
-
-    document.getElementById("popup-text").innerHTML=text;
-
-
-};
-
-
-
-
-
-window.closePopup=function(){
-
-
-    document.getElementById("popup").style.display="none";
-
-
-};
-
-
-
-
-
-
-
-
-
-// ======================
-// 再想想按钮逻辑
-// ======================
-
-
-let count=0;
-
-
-
-const noTexts=[
-
-
-"我知道你可能还没有准备好。🥺<br><br>没关系，我理解。<br>只是想让你知道，我真的想认真和你重新开始。",
-
-
-
-"其实我不是想让你忘记过去。<br><br>我只是希望未来的日子里，还有机会陪在你身边。",
-
-
-
-"以前的我可能没有做好。<br><br>但我真的有在反思，也有在努力改变。<br>如果可以，让我用行动重新证明一次，好吗？",
-
-
-
-"我不会逼你马上答应。<br><br>我只是想告诉你：<br>如果你愿意回头，我一直都在。"
-
-
-];
-
-
-
-
-
-let buhao=document.getElementById("buhao");
-
-
-
-
-
-if(buhao){
-
-
-    buhao.onclick=function(){
-
-
-
-        count++;
-
-
-
-
-        // 前四次按顺序显示
-
-        if(count<=noTexts.length){
-
-
-
-            showPopup(
-            noTexts[count-1]
-            );
-
-
-
-        }
-
-        else{
-
-
-
-            // 后续随机显示
-
-
-            let randomIndex=Math.floor(
-
-            Math.random()*noTexts.length
-
-            );
-
-
-
-            showPopup(
-            noTexts[randomIndex]
-            );
-
-
-
-            // 开始逃跑
-
-            moveButton();
-
-
-
-        }
-
-
-
-    };
+    }
 
 
 }
@@ -187,115 +512,22 @@ if(buhao){
 
 
 
+/* 手机适配 */
 
 
+@media(max-width:600px){
 
-// ======================
-// 按钮逃跑
-// 避开“给我一次机会”按钮
-// ======================
 
+    .page{
 
-function moveButton(){
 
+        width:88%;
 
 
-    let area=document.querySelector(".button-area");
+        min-height:70vh;
 
 
-    let hao=document.getElementById("hao");
-
-
-
-    let areaRect=area.getBoundingClientRect();
-
-
-    let haoRect=hao.getBoundingClientRect();
-
-
-
-    let btnWidth=buhao.offsetWidth;
-
-
-    let btnHeight=buhao.offsetHeight;
-
-
-
-    let maxX=
-    area.offsetWidth-btnWidth;
-
-
-
-    let maxY=
-    area.offsetHeight-btnHeight;
-
-
-
-    let x;
-
-    let y;
-
-    let overlap=true;
-
-
-
-    // 最多尝试50次寻找安全位置
-
-    let times=0;
-
-
-
-    while(overlap && times<50){
-
-
-        x=Math.random()*maxX;
-
-
-        y=Math.random()*maxY;
-
-
-
-
-        let newRect={
-
-
-            left:areaRect.left+x,
-
-            right:areaRect.left+x+btnWidth,
-
-
-            top:areaRect.top+y,
-
-            bottom:areaRect.top+y+btnHeight
-
-
-        };
-
-
-
-
-
-        overlap=!(
-
-
-            newRect.right < haoRect.left ||
-
-
-            newRect.left > haoRect.right ||
-
-
-            newRect.bottom < haoRect.top ||
-
-
-            newRect.top > haoRect.bottom
-
-
-
-        );
-
-
-
-        times++;
+        padding:25px;
 
 
     }
@@ -303,64 +535,78 @@ function moveButton(){
 
 
 
-    buhao.style.left=x+"px";
+
+    .photo{
 
 
-    buhao.style.top=y+"px";
+        width:130px;
+
+
+        height:130px;
+
+
+    }
+
+
+
+
+
+    h1{
+
+
+        font-size:23px;
+
+
+    }
+
+
+
+
+
+    p{
+
+
+        font-size:16px;
+
+
+        line-height:1.8;
+
+
+    }
+
+
+
+
+
+    #hao{
+
+
+        width:85vw;
+
+
+        max-width:300px;
+
+
+        font-size:18px;
+
+
+    }
+
+
+
+
+
+    #buhao{
+
+
+        width:110px;
+
+
+        font-size:16px;
+
+
+    }
 
 
 
 }
-
-
-
-
-
-
-
-
-
-// ======================
-// 给一次机会按钮
-// ======================
-
-
-let hao=document.getElementById("hao");
-
-
-
-
-
-if(hao){
-
-
-    hao.onclick=function(){
-
-
-
-        showPopup(
-
-
-        "谢谢你愿意再给我们一次机会 ❤️<br><br>"+
-
-        "我们不是回到过去，<br>"+
-
-        "而是重新开始。<br><br>"+
-
-        "这一次，我会更加珍惜你。"
-
-
-
-        );
-
-
-    };
-
-
-}
-
-
-
-
-
-});
